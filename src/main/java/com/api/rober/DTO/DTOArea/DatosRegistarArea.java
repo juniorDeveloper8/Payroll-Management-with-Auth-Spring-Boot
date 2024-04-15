@@ -1,4 +1,11 @@
 package com.api.rober.DTO.DTOArea;
 
-public record DatosRegistarArea() {
+import jakarta.validation.constraints.NotBlank;
+
+public record DatosRegistarArea(
+        @NotBlank
+        String ar_nom,
+        @NotBlank
+        String ar_des
+) {
 }

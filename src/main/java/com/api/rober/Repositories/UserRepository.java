@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    Page<UserEntity> findByActivoTrue(Pageable paginacion);
+    Page<UserEntity> findByEstadoTrue(Pageable paginacion);
+    UserEntity findById(int id_us);
 }

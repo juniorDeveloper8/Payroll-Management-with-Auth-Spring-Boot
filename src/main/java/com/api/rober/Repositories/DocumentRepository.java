@@ -9,8 +9,6 @@ import java.util.List;
 @Repository
 public interface DocumentRepository extends JpaRepository<DocumentEntity, Integer> {
 
-    List<DocumentEntity> findByDocument(String document);
-
-    DocumentEntity findById(int id_doc);
+    List<DocumentEntity> findAll();
 
 }

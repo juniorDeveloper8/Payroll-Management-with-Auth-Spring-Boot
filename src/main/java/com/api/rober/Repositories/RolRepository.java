@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface RolRepository extends JpaRepository<RolEntity, Integer> {
 
-    List<RolEntity> findByDate(Date fecha);
+    List<RolEntity> findByFecha(Date fecha);
 
     RolEntity findById(int id_rol);
 }
