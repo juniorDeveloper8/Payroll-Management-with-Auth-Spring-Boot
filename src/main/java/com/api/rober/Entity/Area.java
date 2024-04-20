@@ -28,7 +28,7 @@ public class Area {
 
     //relacion
 
-    @OneToMany(mappedBy = "areaUs", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<User> userList = new ArrayList<>();
 }

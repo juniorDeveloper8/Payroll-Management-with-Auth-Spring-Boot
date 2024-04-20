@@ -4,10 +4,12 @@ import com.api.rober.Entity.Rol;
 import com.api.rober.Persistence.IRolDAO;
 import com.api.rober.Repositories.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class RolDAOImpl implements IRolDAO {
 
     @Autowired

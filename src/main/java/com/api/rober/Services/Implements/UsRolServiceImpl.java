@@ -4,10 +4,12 @@ import com.api.rober.Entity.UsRol;
 import com.api.rober.Persistence.IUsRolDAO;
 import com.api.rober.Services.IUsRolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsRolServiceImpl implements IUsRolService {
 
     @Autowired

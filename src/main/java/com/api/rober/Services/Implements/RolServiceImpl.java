@@ -4,10 +4,12 @@ import com.api.rober.Entity.Rol;
 import com.api.rober.Persistence.IRolDAO;
 import com.api.rober.Services.IRolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class RolServiceImpl implements IRolService {
 
     @Autowired
