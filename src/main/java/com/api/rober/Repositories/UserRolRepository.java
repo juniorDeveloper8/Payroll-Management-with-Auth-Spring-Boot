@@ -1,11 +1,9 @@
 package com.api.rober.Repositories;
 
-import com.api.rober.Entity.UserRolEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.api.rober.Entity.UsRol;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRolRepository extends JpaRepository<UserRolEntity, Integer> {
-
-    UserRolEntity findById(int idUsRol);
+public interface UserRolRepository extends CrudRepository<UsRol, Integer> {
 }

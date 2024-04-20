@@ -1,16 +1,11 @@
 package com.api.rober.Repositories;
 
-import com.api.rober.Entity.DocumentEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.api.rober.Entity.Document;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface DocumentRepository extends JpaRepository<DocumentEntity, Integer> {
-
-    List<DocumentEntity> findByDocument(String document);
-
-    DocumentEntity findById(int id_doc);
-
+public interface DocumentRepository extends CrudRepository<Document, Integer> {
 }
