@@ -1,16 +1,9 @@
 package com.api.rober.Repositories;
 
-import com.api.rober.Entity.RolEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.api.rober.Entity.Rol;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.List;
-
 @Repository
-public interface RolRepository extends JpaRepository<RolEntity, Integer> {
-
-    List<RolEntity> findByFecha(Date fecha);
-
-    RolEntity findById(int id_rol);
+public interface RolRepository extends CrudRepository<Rol, Integer> {
 }
