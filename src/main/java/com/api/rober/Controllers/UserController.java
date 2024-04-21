@@ -21,7 +21,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @Operation(summary = "Get all users")
     @GetMapping(value = "/allUser")
     public ResponseEntity<?> findAll() {
         List<UserDTO> userDtoList = userService.findAll()
@@ -40,7 +39,6 @@ public class UserController {
         return ResponseEntity.ok(userDtoList);
     }
 
-    @Operation(summary = "Get user by id")
     @GetMapping(value = "/user/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         Optional<User> userOptional = userService.findById(id);
@@ -63,7 +61,6 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @Operation(summary = "Create user")
     @PostMapping(value = "/user")
     public ResponseEntity<?> save(@RequestBody UserDTO userDTO) throws URISyntaxException {
 
@@ -85,7 +82,6 @@ public class UserController {
         return ResponseEntity.created(new URI("/api/user")).build();
     }
 
-    @Operation(summary = "Create user employed")
     @PostMapping(value = "/user/employed")
     public ResponseEntity<?> saveEmployed(@RequestBody UserDTO userDTO) throws URISyntaxException {
 
@@ -105,7 +101,6 @@ public class UserController {
         return ResponseEntity.created(new URI("/api/user/employed")).build();
     }
 
-    @Operation(summary = "Update user")
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
         Optional<User> userOptional = userService.findById(id);
@@ -124,7 +119,6 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @Operation(summary = "Delete user")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Integer id) {
 
