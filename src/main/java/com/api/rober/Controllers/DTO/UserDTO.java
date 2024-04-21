@@ -17,7 +17,7 @@ public class UserDTO {
     private String email;
     private String psw;
     private String phone;
-    private Boolean status;
+    private int status;
     // clave foranea
     private Area area;
 }

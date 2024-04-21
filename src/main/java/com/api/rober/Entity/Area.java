@@ -31,4 +31,5 @@ public class Area {
     @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<User> userList = new ArrayList<>();
+
 }

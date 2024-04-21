@@ -31,12 +31,12 @@ public class User {
     @Column(name = "us_telefono", unique = true)
     private String phone;
     @Column(name = "us_estado")
-    private Boolean status;
+    private int status;
 
     // clave foranea
 
     @ManyToOne
-    @JoinColumn(name= "id_area", nullable = false)
+    @JoinColumn(name= "id_area")
     @JsonIgnore
     private Area area;
 
@@ -44,11 +44,10 @@ public class User {
 
     @OneToMany(mappedBy = "userDoc", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
+
     private List<Document> documentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "userRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<UsRol> usRolList = new ArrayList<>();
-
-
 }
