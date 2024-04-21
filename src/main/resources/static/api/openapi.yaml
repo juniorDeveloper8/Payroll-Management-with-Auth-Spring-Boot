@@ -1,10 +1,11 @@
 openapi: 3.0.0
 info:
-  title: API de Usuarios
+  title: API Recursos Humanos
   description: API para gestionar usuarios
   version: 1.0.0
 servers:
-  - url: http://localhost:8080/api
+  - url: http://localhost:8080/api/
+    title: Usuarios
 paths:
   /allUser:
     get:
