@@ -3,6 +3,7 @@ package com.api.rober.Controllers;
 import com.api.rober.Controllers.DTO.UserDTO;
 import com.api.rober.Entity.User;
 import com.api.rober.Services.IUserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api")
-
 public class UserController {
 
     @Autowired
