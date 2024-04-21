@@ -50,6 +50,4 @@ public class User {
     @OneToMany(mappedBy = "userRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<UsRol> usRolList = new ArrayList<>();
-
-
 }

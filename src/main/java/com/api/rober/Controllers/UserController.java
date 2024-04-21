@@ -1,7 +1,6 @@
 package com.api.rober.Controllers;
 
 import com.api.rober.Controllers.DTO.UserDTO;
-import com.api.rober.Entity.Area;
 import com.api.rober.Entity.User;
 import com.api.rober.Services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +14,14 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api")
 
 public class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @GetMapping("/allUser")
+    @GetMapping(value = "/allUser")
     public ResponseEntity<?> findAll() {
         List<UserDTO> userDtoList = userService.findAll()
                 .stream()
@@ -40,7 +39,7 @@ public class UserController {
         return ResponseEntity.ok(userDtoList);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping(value = "/user/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         Optional<User> userOptional = userService.findById(id);
 
@@ -62,7 +61,7 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/user")
+    @PostMapping(value = "/user")
     public ResponseEntity<?> save(@RequestBody UserDTO userDTO) throws URISyntaxException {
 
         if (userDTO.getName().isBlank() || userDTO.getLastname().isBlank() || userDTO.getArea() == null) {
@@ -83,7 +82,26 @@ public class UserController {
         return ResponseEntity.created(new URI("/api/user")).build();
     }
 
-    @PutMapping("/user/{id}")
+    @PostMapping(value = "/user/employed")
+    public ResponseEntity<?> saveEmployed(@RequestBody UserDTO userDTO) throws URISyntaxException {
+
+        if (userDTO.getName().isBlank() || userDTO.getLastname().isBlank() || userDTO.getArea() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        User user = User.builder()
+                .name(userDTO.getName())
+                .lastname(userDTO.getLastname())
+                .email(userDTO.getEmail())
+                .status(userDTO.getStatus())
+                .area(userDTO.getArea())
+                .build();
+
+        userService.save(user);
+        return ResponseEntity.created(new URI("/api/user/employed")).build();
+    }
+
+    @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
         Optional<User> userOptional = userService.findById(id);
 
