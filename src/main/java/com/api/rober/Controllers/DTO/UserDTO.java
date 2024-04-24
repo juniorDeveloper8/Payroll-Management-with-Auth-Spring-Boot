@@ -1,10 +1,14 @@
 package com.api.rober.Controllers.DTO;
 
 import com.api.rober.Entity.Area;
+import com.api.rober.Entity.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +24,5 @@ public class UserDTO {
     private int status;
     // clave foranea
     private Area area;
+    private List<Document> documentList = new ArrayList<>();
 }

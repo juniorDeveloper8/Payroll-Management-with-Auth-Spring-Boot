@@ -3,7 +3,6 @@ package com.api.rober.Controllers;
 import com.api.rober.Controllers.DTO.UserDTO;
 import com.api.rober.Entity.User;
 import com.api.rober.Services.IUserService;
-import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +31,9 @@ public class UserController {
                         .email(user.getEmail())
                         .psw(user.getPsw())
                         .phone(user.getPhone())
-                        .area(user.getArea())
                         .status(user.getStatus())
+                        .area(user.getArea())
+                        .documentList(user.getDocumentList())
                         .build())
                 .toList();
         return ResponseEntity.ok(userDtoList);
@@ -55,6 +55,7 @@ public class UserController {
                     .phone(user.getPhone())
                     .status(user.getStatus())
                     .area(user.getArea())
+                    .documentList(user.getDocumentList())
                     .build();
             return ResponseEntity.ok(userDTO);
         }
@@ -76,6 +77,7 @@ public class UserController {
                 .phone(userDTO.getPhone())
                 .status(userDTO.getStatus())
                 .area(userDTO.getArea())
+                .documentList(userDTO.getDocumentList())
                 .build();
 
         userService.save(user);
@@ -95,6 +97,7 @@ public class UserController {
                 .email(userDTO.getEmail())
                 .status(userDTO.getStatus())
                 .area(userDTO.getArea())
+                .documentList(userDTO.getDocumentList())
                 .build();
 
         userService.save(user);
@@ -113,6 +116,7 @@ public class UserController {
             user.setPsw(userDTO.getPsw());
             user.setPhone(userDTO.getPhone());
             user.setArea(userDTO.getArea());
+            user.setDocumentList(userDTO.getDocumentList());
             userService.save(user);
             return ResponseEntity.ok("Usuario actualizado 👻");
         }
