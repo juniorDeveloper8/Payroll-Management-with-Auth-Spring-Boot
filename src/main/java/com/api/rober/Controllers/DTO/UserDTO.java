@@ -2,6 +2,7 @@ package com.api.rober.Controllers.DTO;
 
 import com.api.rober.Entity.Area;
 import com.api.rober.Entity.Document;
+import com.api.rober.Entity.UsRol;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

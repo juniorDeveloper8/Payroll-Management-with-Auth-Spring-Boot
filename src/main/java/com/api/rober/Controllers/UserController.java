@@ -24,7 +24,7 @@ public class UserController {
     public ResponseEntity<?> findAll() {
         List<UserDTO> userDtoList = userService.findAll()
                 .stream()
-                .map(user -> UserDTO.builder()
+                .map(user ->  UserDTO.builder()
                         .id_us(user.getId_us())
                         .name(user.getName())
                         .lastname(user.getLastname())

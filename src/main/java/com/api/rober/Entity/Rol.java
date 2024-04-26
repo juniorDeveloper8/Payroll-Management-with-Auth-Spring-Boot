@@ -30,6 +30,8 @@ public class Rol {
     private BigDecimal income;
     @Column(name = "rol_egresos")
     private BigDecimal expenses;
+    @Column(name = "rol_subSueldo")
+    private BigDecimal subSalary;
     @Column(name = "rol_sueldo")
     private BigDecimal salary;
 
