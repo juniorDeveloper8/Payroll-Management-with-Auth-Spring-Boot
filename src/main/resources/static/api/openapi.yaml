@@ -1,15 +1,29 @@
 openapi: 3.0.0
 info:
   title: API Recursos Humanos
-  description: API para gestionar usuarios
+  description: API para gestionar usuarios, áreas, documentos, roles y asignaciones de usuario a rol.
   version: 1.0.0
 servers:
   - url: http://localhost:8080/api/
-    title: Usuarios
+    description: Endpoints de la API
+
+tags:
+  - name: Usuarios
+    description: Endpoints relacionados con usuarios
+  - name: Áreas
+    description: Endpoints relacionados con áreas
+  - name: Documentos
+    description: Endpoints relacionados con documentos
+  - name: Roles
+    description: Endpoints relacionados con roles
+  - name: Asignaciones de Usuario a Rol
+    description: Endpoints relacionados con asignaciones de usuario a rol
+
 paths:
   /allUser:
     get:
       summary: Obtiene todos los usuarios
+      tags: [ Usuarios ]
       responses:
         '200':
           description: OK
@@ -19,9 +33,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+
   /user:
     post:
       summary: Crea un nuevo usuario
+      tags: [ Usuarios ]
       requestBody:
         required: true
         content:
@@ -35,11 +51,13 @@ paths:
             Location:
               schema:
                 type: string
-      '400':
-        description: Solicitud incorrecta
+        '400':
+          description: Solicitud incorrecta
+
   /user/employed:
     post:
       summary: Crea un nuevo usuario empleado
+      tags: [ Usuarios ]
       requestBody:
         required: true
         content:
@@ -53,11 +71,13 @@ paths:
             Location:
               schema:
                 type: string
-      '400':
-        description: Solicitud incorrecta
+        '400':
+          description: Solicitud incorrecta
+
   /user/{id}:
     get:
       summary: Obtiene un usuario por ID
+      tags: [ Usuarios ]
       parameters:
         - in: path
           name: id
@@ -75,8 +95,10 @@ paths:
                 $ref: '#/components/schemas/User'
         '404':
           description: No encontrado
+
     put:
       summary: Actualiza un usuario existente por ID
+      tags: [ Usuarios ]
       parameters:
         - in: path
           name: id
@@ -96,8 +118,10 @@ paths:
           description: OK
         '404':
           description: No encontrado
+
     delete:
       summary: Elimina un usuario existente por ID
+      tags: [ Usuarios ]
       parameters:
         - in: path
           name: id
@@ -109,6 +133,227 @@ paths:
       responses:
         '200':
           description: OK
+        '400':
+          description: Solicitud incorrecta
+
+  /allAreas:
+    get:
+      summary: Obtiene todas las áreas
+      tags: [ Áreas ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Area'
+
+  /area/{id}:
+    get:
+      summary: Obtiene un área por ID
+      tags: [ Áreas ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del área a buscar
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Area'
+        '404':
+          description: No encontrado
+
+    post:
+      summary: Crea un nuevo área
+      tags: [ Áreas ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Area'
+      responses:
+        '201':
+          description: Creado
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Solicitud incorrecta
+
+    put:
+      summary: Actualiza un área existente por ID
+      tags: [ Áreas ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del área a actualizar
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Area'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: No encontrado
+
+    delete:
+      summary: Elimina un área existente por ID
+      tags: [ Áreas ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del área a eliminar
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Solicitud incorrecta
+
+  /allDocuments:
+    get:
+      summary: Obtiene todos los documentos
+      tags: [ Documentos ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentDTO'
+
+    post:
+      summary: Crea un nuevo documento
+      tags: [ Documentos ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentDTO'
+      responses:
+        '201':
+          description: Creado
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Solicitud incorrecta
+
+  /document/{id}:
+    delete:
+      summary: Elimina un documento existente por ID
+      tags: [ Documentos ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del documento a eliminar
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Solicitud incorrecta
+  /rol:
+    post:
+      summary: Crea un nuevo rol
+      tags: [ Roles ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RolDTO'
+            responses:
+              '201':
+                description: Creado
+                headers:
+                  Location:
+                    schema:
+                      type: string
+              '400':
+                description: Solicitud incorrecta
+
+  /rol/{id}:
+    put:
+      summary: Actualiza un rol existente por ID
+      tags: [ Roles ]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del rol a actualizar
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RolDTO'
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: No encontrado
+
+  /Todo:
+    get:
+      summary: Obtiene todas las asignaciones de usuario a rol
+      tags: [ Asignaciones de Usuario a Rol ]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UsRolDTO'
+    post:
+      summary: Crea una nueva asignación de usuario a rol
+      tags: [ Asignaciones de Usuario a Rol ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsRolDTO'
+      responses:
+        '201':
+          description: Creado
+          headers:
+            Location:
+              schema:
+                type: string
         '400':
           description: Solicitud incorrecta
 
@@ -144,3 +389,94 @@ components:
           type: string
         des:
           type: string
+    Document:
+      type: object
+      properties:
+        id_doc:
+          type: integer
+          format: int64
+        ruc:
+          type: string
+        passport:
+          type: string
+        icard:
+          type: string
+        userDoc:
+          $ref: '#/components/schemas/User'
+    RolDTO:
+      type: object
+      properties:
+        expenses:
+          type: number
+        income:
+          type: number
+        subSalary:
+          type: number
+        code:
+          type: string
+        date:
+          type: string
+        usRolList:
+          $ref: '#/components/schemas/UserRol'
+      UserRol:
+        type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          user:
+            $ref: '#/components/schemas/User'
+          rol:
+            $ref: '#/components/schemas/Rol'
+    UserRol:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/User'
+        rol:
+          $ref: '#/components/schemas/Rol'
+    Rol:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        expenses:
+          type: number
+        income:
+          type: number
+        subSalary:
+          type: number
+        code:
+          type: string
+        date:
+          type: string
+        usRolList:
+          $ref: '#/components/schemas/UserRol'
+    UsRolDTO:
+      type: object
+      properties:
+        idUsRol:
+          type: integer
+          format: int64
+        userRol:
+          $ref: '#/components/schemas/UserRol'
+        rol:
+          $ref: '#/components/schemas/Rol'
+    DocumentDTO:
+      type: object
+      properties:
+        id_doc:
+          type: integer
+          format: int64
+        icard:
+          type: string
+        passport:
+          type: string
+        ruc:
+          type: string
+        userDoc:
+          $ref: '#/components/schemas/User'

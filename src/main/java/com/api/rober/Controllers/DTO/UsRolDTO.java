@@ -16,4 +16,5 @@ public class UsRolDTO {
     private Integer idUsRol;
     private User userRol;
     private Rol rol;
+
 }
