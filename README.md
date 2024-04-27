@@ -70,7 +70,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {tu_t
 
 ### Base de datos Nomalizada
 
-![dark](./doc/recursos-humanoo.png)
+![dark](./Doc/recursos-humanoo.png)
 
 
 puden usar o no la tabla login en este caso solo fue para mas comodidad pero es opcoinal
