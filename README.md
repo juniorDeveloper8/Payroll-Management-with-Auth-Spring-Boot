@@ -68,10 +68,14 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {tu_t
 
 ```
 
-### Base de datos Nomalizada
+### Base de datos Normalizada
 
-![dark](./doc/recursos-humanoo.png)
+![dark](./Doc/recursos-humanoo.png)
 
+### Publicación de la api en docker
+![dark](./Doc/docker-composer.png)
+
+![dark](./Doc/docker-up.png)
 
 puden usar o no la tabla login en este caso solo fue para mas comodidad pero es opcoinal
 ### Esturtura
