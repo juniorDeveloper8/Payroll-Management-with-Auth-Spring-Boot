@@ -20,9 +20,7 @@ public class UserDTO {
     private String name;
     private String lastname;
     private String email;
-    private String psw;
     private String phone;
-    private int status;
     // clave foranea
     private Area area;
     private List<Document> documentList = new ArrayList<>();

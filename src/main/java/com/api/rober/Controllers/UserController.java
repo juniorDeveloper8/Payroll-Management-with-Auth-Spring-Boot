@@ -29,9 +29,7 @@ public class UserController {
                         .name(user.getName())
                         .lastname(user.getLastname())
                         .email(user.getEmail())
-                        .psw(user.getPsw())
                         .phone(user.getPhone())
-                        .status(user.getStatus())
                         .area(user.getArea())
                         .documentList(user.getDocumentList())
                         .build())
@@ -51,9 +49,7 @@ public class UserController {
                     .name(user.getName())
                     .lastname(user.getLastname())
                     .email(user.getEmail())
-                    .psw(user.getPsw())
                     .phone(user.getPhone())
-                    .status(user.getStatus())
                     .area(user.getArea())
                     .documentList(user.getDocumentList())
                     .build();
@@ -73,9 +69,7 @@ public class UserController {
                 .name(userDTO.getName())
                 .lastname(userDTO.getLastname())
                 .email(userDTO.getEmail())
-                .psw(userDTO.getPsw())
                 .phone(userDTO.getPhone())
-                .status(userDTO.getStatus())
                 .area(userDTO.getArea())
                 .documentList(userDTO.getDocumentList())
                 .build();
@@ -84,25 +78,6 @@ public class UserController {
         return ResponseEntity.created(new URI("/api/user")).build();
     }
 
-    @PostMapping(value = "/user/employed")
-    public ResponseEntity<?> saveEmployed(@RequestBody UserDTO userDTO) throws URISyntaxException {
-
-        if (userDTO.getName().isBlank() || userDTO.getLastname().isBlank() || userDTO.getArea() == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        User user = User.builder()
-                .name(userDTO.getName())
-                .lastname(userDTO.getLastname())
-                .email(userDTO.getEmail())
-                .status(userDTO.getStatus())
-                .area(userDTO.getArea())
-                .documentList(userDTO.getDocumentList())
-                .build();
-
-        userService.save(user);
-        return ResponseEntity.created(new URI("/api/user/employed")).build();
-    }
 
     @PutMapping(value = "/user/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
@@ -113,7 +88,6 @@ public class UserController {
             user.setName(userDTO.getName());
             user.setLastname(userDTO.getLastname());
             user.setEmail(userDTO.getEmail());
-            user.setPsw(userDTO.getPsw());
             user.setPhone(userDTO.getPhone());
             user.setArea(userDTO.getArea());
             user.setDocumentList(userDTO.getDocumentList());
