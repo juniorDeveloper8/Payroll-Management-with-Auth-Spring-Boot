@@ -1,5 +1,6 @@
 package com.api.rober.Entity;
 
+import com.api.rober.Controllers.DTO.User.DTORegistroUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,17 +27,15 @@ public class User {
     private String lastname;
     @Column(name = "us_correo", unique = true)
     private String email;
-    @Column(name = "us_contracena", unique = true, length = 255)
-    private String psw;
     @Column(name = "us_telefono", unique = true)
     private String phone;
     @Column(name = "us_estado")
-    private int status;
+    private boolean status;
 
     // clave foranea
 
     @ManyToOne
-    @JoinColumn(name= "id_area")
+    @JoinColumn(name = "id_area")
     @JsonIgnore
     private Area area;
 
@@ -50,4 +49,20 @@ public class User {
     @OneToMany(mappedBy = "userRol", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JsonIgnore
     private List<UsRol> usRolList = new ArrayList<>();
+
+
+    // save
+    public User(DTORegistroUser dtoRegistroUser) {
+        this.status = true;
+        this.name = dtoRegistroUser.name();
+        this.lastname = dtoRegistroUser.lastname();
+        this.email = dtoRegistroUser.email();
+        this.phone = dtoRegistroUser.phone();
+        this.area = dtoRegistroUser.area();
+    }
+
+    // delete logic
+    public void desactivarUser() {
+        this.status = false;
+    }
 }

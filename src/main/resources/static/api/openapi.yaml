@@ -18,8 +18,27 @@ tags:
     description: Endpoints relacionados con roles
   - name: Asignaciones de Usuario a Rol
     description: Endpoints relacionados con asignaciones de usuario a rol
+  - name: Login
+    description: Endpoint para general el token
 
 paths:
+  /login:
+    post:
+      summary: Autenticar usuario
+      tags: [ Login ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DTOUsuarioAuthentication'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DTOJWTToken'
   /allUser:
     get:
       summary: Obtiene todos los usuarios
@@ -37,26 +56,6 @@ paths:
   /user:
     post:
       summary: Crea un nuevo usuario
-      tags: [ Usuarios ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: Creado
-          headers:
-            Location:
-              schema:
-                type: string
-        '400':
-          description: Solicitud incorrecta
-
-  /user/employed:
-    post:
-      summary: Crea un nuevo usuario empleado
       tags: [ Usuarios ]
       requestBody:
         required: true
@@ -359,6 +358,18 @@ paths:
 
 components:
   schemas:
+    Login:
+      type: object
+      properties:
+        login:
+          type: string
+        clave:
+          type: string
+    DTOJWTToken:
+      type: object
+      properties:
+        token:
+          type: string
     User:
       type: object
       properties:

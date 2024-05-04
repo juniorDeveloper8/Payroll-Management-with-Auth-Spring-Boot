@@ -1,24 +1,29 @@
 # API de Recursos Humanos
 
-
 ## Descripción
 
-Esta API proporciona una serie de endpoints para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en diferentes entidades relacionadas con la gestión de recursos humanos en una organización. La API está construida utilizando Spring Boot, Java 17, MySql y docker.
+Esta API proporciona una serie de endpoints para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en
+diferentes entidades relacionadas con la gestión de recursos humanos en una organización. La API está construida
+utilizando Spring Boot, Java 17, MySql y docker.
 
 ## Autenticación
 
-La API utiliza autenticación basada en tokens. Los usuarios deben incluir un token de autorización válido en el encabezado de sus solicitudes para acceder a los endpoints protegidos.
+La API utiliza autenticación basada en tokens. Los usuarios deben incluir un token de autorización válido en el
+encabezado de sus solicitudes para acceder a los endpoints protegidos.
 
 ## Documentación y Pruebas
 
-La documentación completa de la API, incluyendo detalles sobre los endpoints, parámetros de solicitud y respuestas esperadas, está disponible en Swagger UI. Puedes acceder a la documentación en [Swagger UI](http://localhost:8080/api/swagger-ui.html).
+La documentación completa de la API, incluyendo detalles sobre los endpoints, parámetros de solicitud y respuestas
+esperadas, está disponible en Swagger UI. Puedes acceder a la documentación
+en [Swagger UI](http://localhost:8080/api/swagger-ui.html).
 
 ## Endpoints Principales
 
 ### Usuarios
 
 - **GET /api/allUser**: Obtiene todos los usuarios registrados.
-- **POST /api/user**: Crea un nuevo usuario.
+- **POST /api/user**: Crea un nuevo usuario. este es administrador esta necesita un password para acceder a los otros
+  endpoints
 - **POST /api/user/employed**: Crea un nuevo usuario empleado.
 - **GET /api/user/{id}**: Obtiene un usuario por su ID.
 - **PUT /api/user/{id}**: Actualiza un usuario existente por su ID.
@@ -50,7 +55,10 @@ La documentación completa de la API, incluyendo detalles sobre los endpoints, p
 
 ## Requisitos
 
-Para utilizar esta API, es necesario contar con permisos de acceso y autenticación mediante tokens de autorización. Asegúrate de incluir el token de autorización en el encabezado de tus solicitudes asegurate de registrarte primero en la apliacion para poder usar los demas endpoints esta ruta.
+Para utilizar esta API, es necesario contar con permisos de acceso y autenticación mediante tokens de autorización.
+Asegúrate de incluir el token de autorización en el encabezado de tus solicitudes asegurate de registrarte primero en la
+apliacion para poder usar los demas endpoints esta ruta.
+
 - **POST /api/user**: Crea un nuevo usuario.
 
 ## Ejemplos de Uso
@@ -70,15 +78,19 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {tu_t
 
 ### Base de datos Normalizada
 
-![dark](./Doc/recursos-humanoo.png)
+![dark](./Doc/recursos-humanos.png)
 
 ### Publicación de la api en docker
+
 ![dark](./Doc/docker-composer.png)
 
 ![dark](./Doc/docker-up.png)
 
-puden usar o no la tabla login en este caso solo fue para mas comodidad pero es opcoinal
-### Esturtura
+- Si todo sale bien se les debe crear un contenedor con los recursos de la api para su funcionamiento
+
+![dark](./Doc/deploy.png)
+
+### Estructura de la api
 
 ```
                             └── 📁Controllers
