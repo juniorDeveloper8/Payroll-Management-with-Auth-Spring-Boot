@@ -29,7 +29,7 @@ public class User {
     private String email;
     @Column(name = "us_telefono", unique = true)
     private String phone;
-    @Column(name = "us_estado")
+    @Column(name = "us_estado", columnDefinition = "TINYINT(1)")
     private boolean status;
 
     // clave foranea

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IUserDAO {
 
-    List<User> findAll();
+    List<User> findByStatusTrue();
 
     Optional<User> findById(Integer id_us);
 

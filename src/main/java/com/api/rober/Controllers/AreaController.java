@@ -27,7 +27,6 @@ public class AreaController {
                         .id_ar(area.getId_ar())
                         .name(area.getName())
                         .des(area.getDes())
-                        .userList(area.getUserList())
                         .build())
                 .toList();
         return ResponseEntity.ok(areaDTOList);
@@ -44,7 +43,6 @@ public class AreaController {
                     .id_ar(area.getId_ar())
                     .name(area.getName())
                     .des(area.getDes())
-                    .userList(area.getUserList())
                     .build();
             return ResponseEntity.ok(areaDTO);
         }
@@ -60,7 +58,6 @@ public class AreaController {
         Area area = Area.builder()
                 .name(areaDTO.getName())
                 .des(areaDTO.getDes())
-                .userList(areaDTO.getUserList())
                 .build();
         areaService.save(area);
         return ResponseEntity.created(new URI("/api/area")).build();

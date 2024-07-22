@@ -20,5 +20,4 @@ public class AreaDTO {
     private String name;
     private String des;
 
-    private List<User> userList = new ArrayList<>();
 }

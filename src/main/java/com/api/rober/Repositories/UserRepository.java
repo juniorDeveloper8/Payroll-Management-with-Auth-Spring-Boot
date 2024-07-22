@@ -1,14 +1,13 @@
 package com.api.rober.Repositories;
 
-import com.api.rober.Entity.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.api.rober.Entity.User;;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-    Page<User> findByStatusTrue(Pageable pagination);
+    List<User> findByStatusTrue();
 
 }

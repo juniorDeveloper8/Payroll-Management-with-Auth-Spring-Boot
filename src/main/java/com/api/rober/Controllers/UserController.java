@@ -22,7 +22,7 @@ public class UserController {
 
     @GetMapping(value = "/allUser")
     public ResponseEntity<?> findAll() {
-        List<UserDTO> userDtoList = userService.findAll()
+        List<UserDTO> userDtoList = userService.findByStatusTrue()
                 .stream()
                 .map(user ->  UserDTO.builder()
                         .id_us(user.getId_us())

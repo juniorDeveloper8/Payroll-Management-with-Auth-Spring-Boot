@@ -15,7 +15,7 @@ encabezado de sus solicitudes para acceder a los endpoints protegidos.
 
 La documentación completa de la API, incluyendo detalles sobre los endpoints, parámetros de solicitud y respuestas
 esperadas, está disponible en Swagger UI. Puedes acceder a la documentación
-en [Swagger UI](http://localhost:8080/api/swagger-ui.html).
+en [Swagger UI](http://localhost:8080/swagger-ui/index.html#/).
 
 ## Endpoints Principales
 

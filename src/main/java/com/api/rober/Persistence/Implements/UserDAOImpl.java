@@ -16,8 +16,8 @@ public class UserDAOImpl implements IUserDAO {
     private UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+    public List<User> findByStatusTrue() {
+        return (List<User>) userRepository.findByStatusTrue();
     }
 
     @Override
