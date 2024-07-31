@@ -1,6 +1,6 @@
 package com.api.rober.Entity;
 
-import com.api.rober.Controllers.DTO.User.DatosRegistroUserLogin;
+import com.api.rober.DTO.Login.DatosRegistroUserLogin;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

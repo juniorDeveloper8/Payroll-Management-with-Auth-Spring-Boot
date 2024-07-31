@@ -18,12 +18,12 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_doc;
 
-    @Column(name = "doc_cedula")
-    private String icard;
-    @Column(name = "doc_pasaporte")
-    private String passport;
-    @Column(name = "doc_ruc")
-    private String ruc;
+    @Column(name = "tipo_documento")
+    private Documento documento;
+
+    @Column(name = "numero_documento")
+    private String NumeroDocumento;
+
 
     // llave foranea
     @ManyToOne

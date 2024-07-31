@@ -1,6 +1,7 @@
 package com.api.rober.Entity;
 
-import com.api.rober.Controllers.DTO.User.DTORegistroUser;
+import com.api.rober.DTO.User.DTORegistroUser;
+import com.api.rober.DTO.User.DTOUpdateUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -58,11 +59,25 @@ public class User {
         this.lastname = dtoRegistroUser.lastname();
         this.email = dtoRegistroUser.email();
         this.phone = dtoRegistroUser.phone();
-        this.area = dtoRegistroUser.area();
     }
 
     // delete logic
     public void desactivarUser() {
         this.status = false;
+    }
+
+    public void updateUser(DTOUpdateUser dtoUpdateUser) {
+        if (dtoUpdateUser.name() != null){
+            this.name = dtoUpdateUser.name();
+        }
+        if (dtoUpdateUser.lastname() != null){
+            this.name = dtoUpdateUser.lastname();
+        }
+        if (dtoUpdateUser.email() != null){
+            this.name = dtoUpdateUser.email();
+        }
+        if (dtoUpdateUser.phone() != null){
+            this.name = dtoUpdateUser.phone();
+        }
     }
 }

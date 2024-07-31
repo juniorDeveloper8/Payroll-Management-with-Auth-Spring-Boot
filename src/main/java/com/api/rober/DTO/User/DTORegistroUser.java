@@ -1,10 +1,10 @@
-package com.api.rober.Controllers.DTO.User;
+package com.api.rober.DTO.User;
 
 import com.api.rober.Entity.Area;
+import com.api.rober.Entity.Document;
 import jakarta.validation.constraints.NotBlank;
 
 public record DTORegistroUser(
-        String psw,
         String phone,
         @NotBlank
         String name,
@@ -12,7 +12,6 @@ public record DTORegistroUser(
         String lastname,
         @NotBlank
         String email,
-        @NotBlank
-        Area area
+        Document document
 ) {
 }
