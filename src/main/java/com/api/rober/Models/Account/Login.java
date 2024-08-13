@@ -73,12 +73,10 @@ public class Login implements UserDetails {
         return Activo;
     }
 
-    //creacion de cuenta
     public Login(DatosRegistroAccount datosRegistroAccount) {
         this.Activo = true;
         this.username = datosRegistroAccount.username();
 
-        // encriptamos la contracena
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.password = passwordEncoder.encode(datosRegistroAccount.password());
     }

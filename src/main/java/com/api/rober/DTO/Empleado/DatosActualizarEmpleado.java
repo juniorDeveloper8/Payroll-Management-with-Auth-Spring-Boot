@@ -1,9 +1,10 @@
 package com.api.rober.DTO.Empleado;
 
 import com.api.rober.Models.Enum.EstadoCivil;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record DatosActualizarEmpleado(
 
         @NotNull

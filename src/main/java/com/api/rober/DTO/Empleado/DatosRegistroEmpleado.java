@@ -2,18 +2,21 @@ package com.api.rober.DTO.Empleado;
 
 
 import com.api.rober.Models.Enum.EstadoCivil;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record DatosRegistroEmpleado(
-        @NotBlank
+        @NotBlank(message = "Nombre no debe estar vasio")
         String nom,
-        @NotBlank
+        @NotBlank(message = "Apellido no debe estar vasio")
         String ape,
-        @NotBlank
+        @NotBlank(message = "Correo no debe estar vasio")
+        @Email(message = "Correo debe ser una dirección de correo electrónico válida")
         String correo,
-        @NotBlank
+        @NotBlank(message = "teleforno no debe estar vasio")
         String telefono,
-        @NotBlank
+        @NotBlank(message = "estado civil no debe estar vasio")
         EstadoCivil estadoCivil
+
 ) {
 }
