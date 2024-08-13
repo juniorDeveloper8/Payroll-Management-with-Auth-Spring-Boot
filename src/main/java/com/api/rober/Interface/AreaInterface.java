@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface AreaInterface extends CrudRepository<Area, Integer> {
 
-    List<Empleado> findByNom(String nom); //retornamos empleados q pertenescan a cierta area
+    List<Empleado> findByNom(String nom);
 }

@@ -1,8 +1,8 @@
 version: "3.9"
 services:
-  hotel-api:
+  rol-api:
     image: rol-api
-    container_name: hotel-api-container
+    container_name: RRHH
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,13 +12,15 @@ services:
       - spring-network
     depends_on:
       - mysql
+    environment:
+      - JWT_SECRET=123456
 
   mysql:
     image: mysql:8
-    container_name: mysql_database
+    container_name: mysql_rrhh
     environment:
       MYSQL_ROOT_PASSWORD: roberth456
-      MYSQL_DATABASE: alura
+      MYSQL_DATABASE: DB_RRHH
       MYSQL_USER: hack4you
       MYSQL_PASSWORD: 123456
     ports:
@@ -30,5 +32,6 @@ services:
 
 networks:
   spring-network:
+
 volumes:
   mysql-volume:

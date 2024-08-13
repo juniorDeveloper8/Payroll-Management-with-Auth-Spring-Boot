@@ -22,4 +22,4 @@ COPY ./src /root/src
 RUN ./mvnw clean install -DskipTests
 
 # levantar el servicion cuando inicie el contenedor TOCA CAMBIAR EL SNAPSHOT
-ENTRYPOINT ["java","-jar","/root/target/hotel-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/root/target/rober-0.0.1.jar"]

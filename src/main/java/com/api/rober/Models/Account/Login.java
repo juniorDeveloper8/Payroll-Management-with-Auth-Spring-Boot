@@ -36,7 +36,7 @@ public class Login implements UserDetails {
     private String password;
 
     @Column(columnDefinition = "TINYINT(1)", nullable = false)
-    private boolean Activo;
+    private boolean activo;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -70,11 +70,11 @@ public class Login implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return Activo;
+        return activo;
     }
 
     public Login(DatosRegistroAccount datosRegistroAccount) {
-        this.Activo = true;
+        this.activo = true;
         this.username = datosRegistroAccount.username();
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

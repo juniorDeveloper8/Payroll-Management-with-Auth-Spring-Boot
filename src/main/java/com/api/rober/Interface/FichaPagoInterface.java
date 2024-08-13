@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface FichaPagoInterface extends CrudRepository<FichaPago, Integer> {
-    List<FichaPago> findByEmpleadoNombre(String nombre);
+    List<FichaPago> findByEmpleadoNom(String nom);
 
     /*
     @Query("SELECT f FROM FichaPago f WHERE f.empleado.nom = :nombre")
