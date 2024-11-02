@@ -4,6 +4,7 @@ import com.api.rober.DTO.FichaPago.DatosActualizacionFichaPago;
 import com.api.rober.DTO.FichaPago.DatosListaFichaPago;
 import com.api.rober.DTO.FichaPago.DatosRegistroFichaPago;
 import com.api.rober.DTO.FichaPago.DatosRespuestaFichaPago;
+import com.api.rober.Interface.EmpleadoInterface;
 import com.api.rober.Interface.FichaPagoInterface;
 import com.api.rober.Models.FichaPago;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,6 +29,9 @@ public class FichaPagoController {
     @Autowired
     private FichaPagoInterface fichaPagoInterface;
 
+    @Autowired
+    private EmpleadoInterface empleadoInterface;
+
     @PostMapping
     @Operation(summary = "Guardar una nueva ficha de pago",
             description = "Guarda una nueva ficha de pago en la base de datos y devuelve los datos de la ficha de pago guardada.",
@@ -45,18 +49,22 @@ public class FichaPagoController {
             return ResponseEntity.badRequest().build();
         }
 
-        FichaPago fichaPago = new FichaPago(registroFichaPago);
+        FichaPago fichaPago = new FichaPago(registroFichaPago, empleadoInterface);
+        fichaPago.setSueldoNeto(fichaPago.calcularNetoPagar());
+
         fichaPago = fichaPagoInterface.save(fichaPago);
 
         DatosRespuestaFichaPago datosRespuestaFichaPago = new DatosRespuestaFichaPago(
+                fichaPago.getEmpleado(),
                 fichaPago.getFechaEmision(),
                 fichaPago.getIngresos(),
                 fichaPago.getEgresos(),
                 fichaPago.getSueldo(),
+                fichaPago.getSueldoNeto(),
                 fichaPago.getEstadoRol()
         );
 
-        URI url = uriComponentsBuilder.path("/fichaPago/{id}").buildAndExpand(fichaPago.getId()).toUri();
+        URI url = uriComponentsBuilder.path("/fichaPago").buildAndExpand(fichaPago.getId()).toUri();
         return ResponseEntity.created(url).body(datosRespuestaFichaPago);
     }
 

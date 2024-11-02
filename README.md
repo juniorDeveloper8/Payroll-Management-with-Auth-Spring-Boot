@@ -43,7 +43,10 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {tu_t
 
 ![dark](./Doc/db.png)
 
-### Publicación de la api en docker
+### Publicación de la api en docker usa    
+```
+ docker-compose up --build -d
+```
 ![dark](./Doc/docker.png)
 - Si todo sale bien se les debe crear un contenedor con los recursos de la api para su funcionamiento
 

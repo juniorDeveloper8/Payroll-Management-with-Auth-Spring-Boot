@@ -4,8 +4,13 @@ package com.api.rober.DTO.Empleado;
 import com.api.rober.Models.Enum.EstadoCivil;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record DatosRegistroEmpleado(
+        @NotNull
+        Integer idDo,
+        @NotNull
+        Integer idArea,
         @NotBlank(message = "Nombre no debe estar vasio")
         String nom,
         @NotBlank(message = "Apellido no debe estar vasio")

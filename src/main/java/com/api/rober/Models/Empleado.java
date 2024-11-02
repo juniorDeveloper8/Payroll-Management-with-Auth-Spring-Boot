@@ -2,6 +2,8 @@ package com.api.rober.Models;
 
 import com.api.rober.DTO.Empleado.DatosActualizarEmpleado;
 import com.api.rober.DTO.Empleado.DatosRegistroEmpleado;
+import com.api.rober.Interface.AreaInterface;
+import com.api.rober.Interface.DocumentoInterface;
 import com.api.rober.Models.Enum.EstadoCivil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -59,8 +61,12 @@ public class Empleado {
 
     //Metodos Crud
 
-    public Empleado(DatosRegistroEmpleado datosRegistroEmpleado) {
+    public Empleado(DatosRegistroEmpleado datosRegistroEmpleado, DocumentoInterface documentoInterface, AreaInterface areaInterface) {
         this.activo = true;
+        this.documento = documentoInterface.findById(datosRegistroEmpleado.idDo())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento no encontrado"));
+        this.area = areaInterface.findById(datosRegistroEmpleado.idArea())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento no encontrado"));
         this.nom = datosRegistroEmpleado.nom();
         this.ape = datosRegistroEmpleado.ape();
         this.correo = datosRegistroEmpleado.correo();

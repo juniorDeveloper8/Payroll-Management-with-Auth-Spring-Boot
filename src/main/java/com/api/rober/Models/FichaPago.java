@@ -2,6 +2,7 @@ package com.api.rober.Models;
 
 import com.api.rober.DTO.FichaPago.DatosActualizacionFichaPago;
 import com.api.rober.DTO.FichaPago.DatosRegistroFichaPago;
+import com.api.rober.Interface.EmpleadoInterface;
 import com.api.rober.Models.Enum.EstadoRol;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,6 +42,9 @@ public class FichaPago {
     @Column(columnDefinition = "DECIMAL(8,2)")
     private BigDecimal sueldo;
 
+    @Column(columnDefinition = "DECIMAL(8,2)")
+    private BigDecimal sueldoNeto; //sueldo q sale del calculo
+
     @Column(name = "estado")
     @Enumerated(EnumType.STRING)
     private EstadoRol estadoRol;
@@ -52,12 +56,15 @@ public class FichaPago {
 
     // metodo save
 
-    public FichaPago(DatosRegistroFichaPago datosRegistroFichaPago) {
+    public FichaPago(DatosRegistroFichaPago datosRegistroFichaPago, EmpleadoInterface empleadoInterface) {
         this.codigo = generarCodigoUnico();
+        this.empleado = empleadoInterface.findById(datosRegistroFichaPago.idEmp())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empleado no encontrado"));
         this.fechaEmision = datosRegistroFichaPago.fechaEmision();
         this.ingresos = datosRegistroFichaPago.ingresos();
         this.egresos = datosRegistroFichaPago.egresos();
         this.sueldo = datosRegistroFichaPago.sueldo();
+        this.sueldoNeto = datosRegistroFichaPago.sueldoNeto();
         this.estadoRol = datosRegistroFichaPago.estadoRol();
     }
 
@@ -80,11 +87,16 @@ public class FichaPago {
         if (sueldo == null) {
             return BigDecimal.ZERO;
         }
+
         BigDecimal descuento = calcularDescuento();
         BigDecimal ingresosFinales = ingresos != null ? ingresos : BigDecimal.ZERO;
         BigDecimal egresosFinales = egresos != null ? egresos : BigDecimal.ZERO;
-        return sueldo.add(ingresosFinales).subtract(descuento).subtract(egresosFinales);
+
+        // Calcular sueldo neto
+        sueldoNeto = sueldo.add(ingresosFinales).subtract(descuento).subtract(egresosFinales);
+        return sueldoNeto.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
+
 
     // Método para guardar y mostrar resultados
     public void save() {

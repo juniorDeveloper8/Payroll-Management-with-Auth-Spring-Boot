@@ -5,6 +5,7 @@ import com.api.rober.DTO.Empleado.DatosListaEmpleados;
 import com.api.rober.DTO.Empleado.DatosRegistroEmpleado;
 import com.api.rober.DTO.Empleado.DatosRespuestaEmpleado;
 import com.api.rober.Interface.AreaInterface;
+import com.api.rober.Interface.DocumentoInterface;
 import com.api.rober.Interface.EmpleadoInterface;
 import com.api.rober.Models.Empleado;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +33,9 @@ public class EmpleadoController {
 
     @Autowired
     private AreaInterface areaInterface;
+    @Autowired
+    private DocumentoInterface documentoInterface;
+
 
     @PostMapping
     @Operation(summary = "Guardar un nuevo empleado",
@@ -41,12 +45,20 @@ public class EmpleadoController {
                     @ApiResponse(responseCode = "400", description = "Solicitud inválida")
             })
     public ResponseEntity<DatosRespuestaEmpleado> saveEmpleado(@RequestBody DatosRegistroEmpleado datosRegistroEmpleado, UriComponentsBuilder uriComponentsBuilder) {
-        if (datosRegistroEmpleado.nom().isBlank() || datosRegistroEmpleado.ape().isBlank() || datosRegistroEmpleado.correo().isBlank() || datosRegistroEmpleado.estadoCivil() == null) {
+        if (datosRegistroEmpleado.nom().isBlank() ||
+                datosRegistroEmpleado.ape().isBlank() ||
+                datosRegistroEmpleado.correo().isBlank() ||
+                datosRegistroEmpleado.estadoCivil() == null) {
             return ResponseEntity.badRequest().build();
         }
 
-        Empleado empleado = empleadoInterface.save(new Empleado(datosRegistroEmpleado));
+//        Empleado empleado = empleadoInterface.save(new Empleado(datosRegistroEmpleado));
+        Empleado empleado = new Empleado(datosRegistroEmpleado, documentoInterface, areaInterface);
+        empleado = empleadoInterface.save(empleado);
+
         DatosRespuestaEmpleado datosRespuestaEmpleado = new DatosRespuestaEmpleado(
+                empleado.getArea(),
+                empleado.getDocumento(),
                 empleado.getNom(),
                 empleado.getApe(),
                 empleado.getCorreo(),
@@ -133,6 +145,8 @@ public class EmpleadoController {
         empleado.setEstadoCivil(actualizarEmpleado.estadoCivil());
 
         var datosEmpleado = new DatosRespuestaEmpleado(
+                empleado.getArea(),
+                empleado.getDocumento(),
                 empleado.getNom(),
                 empleado.getApe(),
                 empleado.getCorreo(),
